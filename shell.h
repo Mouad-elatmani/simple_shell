@@ -13,9 +13,12 @@
 
 
 
-/* handle_strings.c functions */
+/* handle_strings.c and handle_strings2.c functions */
 
-int _strlen(const char *s);
+int str_len(const char *s);
+int str_cmp(char *str1, char *str2);
+char *str_cat(char *src, char *dest);
+char *str_dup(char *str);
 
 /* strtok_handler.c functions */
 
