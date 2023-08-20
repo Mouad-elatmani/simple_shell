@@ -19,6 +19,7 @@ int str_len(const char *s);
 int str_cmp(char *str1, char *str2);
 char *str_cat(char *src, char *dest);
 char *str_dup(char *str);
+char *str_cpy(char *src, char *dest);
 
 /* strtok_handler.c functions */
 
