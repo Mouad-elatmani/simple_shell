@@ -13,6 +13,13 @@
 
 
 
+/* handle_strings.c functions */
 
+int _strlen(const char *s);
+
+/* strtok_handler.c functions */
+
+int is_delim(char c, const char *delim);
+char *strtok_handler(char *str, const char *delim);
 
 #endif
