@@ -12,7 +12,9 @@
 #include <errno.h>
 /*env command*/
 void print_environment(void);
+char  *_get_envi_value(char *name);
 extern char **cu_environ;
+
 
 
 /* handle_strings.c and handle_strings2.c functions */

@@ -18,3 +18,23 @@ void print_environment(void)
 		env_var++;
 	}
 }
+/**
+ * _get_envi_value - Function that get the value of a variable.
+ * @name: Variable name.
+ * Return: The value of the variable.
+ */
+char *_get_envi_value(char *name)
+{
+	int var;
+	char **environment;
+
+	if (name == NULL || name[0] == '\0')
+		return (NULL);
+	var = (int)_strlen(name);
+
+	for (environment = cu_environ; (*environment) != NULL; environment++)
+	{
+		if (strncmp(*environment, name, var) == 0 && (*environment)[var] == '=')
+			return (*environment + var + 1);
+	}
+}
