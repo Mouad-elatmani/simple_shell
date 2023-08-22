@@ -28,7 +28,7 @@ char *str_dup(char *str)
  * str_cpy - function that Copies the string "src"
  * @src: the source
  * @dest: the destination
- * Retun: the destination
+ * Return: a poiter to the destination
  */
 
 char *str_cpy(char *src, char *dest)
@@ -45,4 +45,23 @@ char *str_cpy(char *src, char *dest)
 	*dest = '\0';
 
 	return (f_dest);
+}
+
+/**
+ * str_chr - Locates a character in a string.
+ * @str: the string we wanna use
+ * @ch: the character we wanna look for
+ * Return: pointer to the first occurence of "ch" or NULL
+ */
+char *str_chr(char *str, char ch)
+{
+	int i;
+
+	for (i = 0; str[i]; i++)
+	{
+		if (str[i] == ch)
+			return (str + i);
+	}
+
+	return (NULL);
 }

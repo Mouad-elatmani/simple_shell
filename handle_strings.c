@@ -58,3 +58,23 @@ char *str_cat(char *src, char *dest)
 	*dest = '\0';
 	return (f_dest);
 }
+
+/**
+ * str_ncat - a function that concatenates two strings to n bytes
+ * @src: the source
+ * @dest: the destination
+ * @n: the number of char
+ * Return: returns destination
+ */
+
+char *str_ncat(char *src, char *dest, int n)
+{
+	int d_len = str_len(dest);
+	int i;
+
+	for (i = 0; i < n && src[i] != '\0'; i++)
+		dest[d_len + i] = src[i];
+	dest[d_len + i] = '\0';
+
+	return (dest);
+}
