@@ -12,7 +12,7 @@ void print_environment(void)
 
 	while ((*env_var))
 	{
-		length = (int)_strlen(*env_var);
+		length = (int)str_len(*env_var);
 		write(1, *env_var, len);
 		write(1, "\n", 1);
 		env_var++;
