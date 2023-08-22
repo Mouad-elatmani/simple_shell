@@ -15,6 +15,8 @@ void print_environment(void);
 char  *_get_envi_value(char *name);
 extern char **cu_environ;
 
+int _exit(char *line, int *status, int count, char *prog_name, char *message);
+
 
 
 /* handle_strings.c and handle_strings2.c functions */
