@@ -10,7 +10,9 @@
 #include <sys/wait.h>
 #include <unistd.h>
 #include <errno.h>
-
+/*env command*/
+void print_environment(void);
+extern char **cu_environ;
 
 
 /* handle_strings.c and handle_strings2.c functions */
