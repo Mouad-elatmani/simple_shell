@@ -4,6 +4,7 @@
  *
  * Return: .
 */
+char **cu_environ;
 void print_environment(void)
 {
 	char **env_var = cu_environ;
