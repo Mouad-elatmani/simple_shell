@@ -76,5 +76,12 @@ char *handle_env_err(data *Data);
 
 int error_handler(data *Data, int val);;
 
+/* cmd_handler functions */
+
+int exec_cmd(data *Data);
+int handle_error_cmd(char *dir, data *Data);
+int if_executes(data *Data);
+char *find_cmd(char *cmd, char **env);
+int if_curr_dir(char *path, int *a);
 
 #endif
