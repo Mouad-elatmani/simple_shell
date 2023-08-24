@@ -56,4 +56,8 @@ int check_builtin(char *program_name, char *input_line, int *process_status,
 /* modes*/
 void run_non_interactive_mode(char **argv);
 void run_interactive_shell(char **arguments);
+
+
+int _custom_getline(char **line, size_t *len);
+char _custom_getchar(void);
 #endif
