@@ -8,8 +8,7 @@ void run_interactive_shell(char **arguments)
 {
 	    char *input_line = NULL, *cmd, *processed_line;
 	    char **cmd_arguments = {NULL}, *env[] = {NULL};
-	    size_t buffer_size = 0;
-	    ssize_t read_size;
+	    ssize_t read_size, buffer_size = 0;
 	    int process_status = 0, command_count = 0, i;
 
 	while (1)
@@ -37,8 +36,7 @@ void run_interactive_shell(char **arguments)
 			cmd_arguments = generate_arguments(processed_line);
 			i = execute_command(cmd, cmd_arguments, env, &process_status);
 			if (i == 0)
-				print_cu_err(arguments[0], command_count,
-						process_status, processed_line);
+				print_cu_err(arguments[0], command_count, process_status, processed_line);
 		}
 		else if (cmd == NULL)
 		{
