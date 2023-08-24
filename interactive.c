@@ -15,7 +15,7 @@ void run_interactive_shell(char **arguments)
 	while (1)
 	{
 		command_count++;
-		write(1, ":-$ ", sizeof(":-$ ") - 1);
+		write(1, ":) ", sizeof(":) ") - 1);
 		read_size = cu_getline(&input_line, &buffer_size, stdin);
 		if (read_size == -1)
 		{
