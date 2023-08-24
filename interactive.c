@@ -8,7 +8,8 @@ void run_interactive_shell(char **arguments)
 {
 	    char *input_line = NULL, *cmd, *processed_line;
 	    char **cmd_arguments = {NULL}, *env[] = {NULL};
-	    ssize_t read_size, buffer_size = 0;
+	    size_t buffer_size = 0;
+	    ssize_t read_size;
 	    int process_status = 0, command_count = 0, i;
 
 	while (1)
