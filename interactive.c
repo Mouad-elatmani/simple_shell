@@ -37,13 +37,13 @@ void run_interactive_shell(char **arguments)
 			cmd_arguments = generate_arguments(processed_line);
 			i = execute_command(cmd, cmd_arguments, env, &process_status);
 			if (i == 0)
-				print_cu_error(arguments[0], command_count,
+				print_cu_err(arguments[0], command_count,
 						process_status, processed_line);
 		}
 		else if (cmd == NULL)
 		{
 			_execute_not_found(processed_line, cmd_arguments, env, &process_status);
-			print_cu_error(arguments[0], command_count, process_status, processed_line);
+			print_cu_err(arguments[0], command_count, process_status, processed_line);
 		}
 		free(cmd);
 	}
