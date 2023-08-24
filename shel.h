@@ -18,7 +18,7 @@ void command_error(char *program_name, char *command_count_str,
 		char *input_line);
 void _permission_error(char *program_name, char *command_count_str,
 		char *input_line);
-void print_cu_error(char *program_name, int command_count, int status,
+void print_cu_err(char *program_name, int command_count, int status,
 		char *input_line);
 void print_exit_error(char *program_name, char *command_count_str,
 		char *input_line);
