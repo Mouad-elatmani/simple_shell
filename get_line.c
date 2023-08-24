@@ -1,68 +1,124 @@
-#include "sehl.h"
+#include "shel.h"
+
+
 /**
- * _custom_getchar - a function that reads a character from standard input
- *
- * Return: the read character
+ * bring_line - assigns the line var for get_line
+ * @lineptr: Buffer that stores the input str
+ * @n: size of line
+ * @buffer: str that is being called to line
+ * @j: size of buffer
  */
-char _custom_getchar(void)
+void bring_line(char **lineptr, size_t *n, char *buffer, size_t j)
 {
-    char c;
-    ssize_t read_result = read(STDIN_FILENO, &c, 1);
+    size_t new_size;
 
-    if (read_result == -1)
+    if (*lineptr == NULL)
     {
-        perror("Reading Char");
-        exit(EXIT_FAILURE);
+        new_size = (j > BUFSIZE) ? j : BUFSIZE;
+        *n = new_size;
+        *lineptr = buffer;
     }
-    else if (read_result == 0)
+    else if (*n < j)
     {
-        write(STDOUT_FILENO, "\n", 1);
-        fflush(stdout);
-        exit(EXIT_SUCCESS);
+        new_size = (j > BUFSIZE) ? j : BUFSIZE;
+        *n = new_size;
+        *lineptr = buffer;
     }
-
-    return c;
+    else
+    {
+        _strcpy(*lineptr, buffer);
+        free(buffer);
+    }
 }
 
 /**
- * _custom_getline - a function to read a line from standard input
- * @line: a pointer to a pointer to save the string
- * @len: the size of the characters read
- *
- * Return: the size of the read string
+ * custom_getline - Read input from stream
+ * @lineptr: Buffer that stores the input
+ * @n: Size of lineptr
+ * @stream: Stream to read from
+ * Return: The number of bytes
  */
-int _custom_getline(char **line, size_t *len)
+ssize_t custom_getline(char **lineptr, size_t *n, FILE *stream)
 {
-    size_t limit = 25;
-    char *tmp;
+    int i;
+    static ssize_t input;
+    ssize_t retval;
+    char *buffer;
+    char t = 'z';
 
-    *line = (char *)malloc(limit);
-    if (!(*line))
+    if (input == 0)
+        fflush(stream);
+    else
+        return (-1);
+    input = 0;
+
+    buffer = malloc(sizeof(char) * BUFSIZE);
+    if (buffer == NULL)
+        return (-1);
+
+    while (t != '\n')
     {
-        perror("Allocation");
-        exit(EXIT_FAILURE);
-    }
-
-    *len = 0;
-
-    while ((*line)[*len - 1] != '\n')
-    {
-        (*line)[*len] = _custom_getchar();
-        *len += 1;
-
-        if (*len > (limit - 3))
+        i = read(STDIN_FILENO, &t, 1);
+        if (i == -1 || (i == 0 && input == 0))
         {
-            tmp = (char *)realloc(*line, limit + 10);
-            if (tmp)
-                *line = tmp;
-            else
-            {
-                perror("Reallocation");
-                exit(EXIT_FAILURE);
-            }
-            limit += 10;
+            free(buffer);
+            return (-1);
         }
+        if (i == 0 && input != 0)
+        {
+            input++;
+            break;
+        }
+        if (input >= BUFSIZE)
+            buffer = custom_realloc(buffer, input, input + 1);
+        buffer[input] = t;
+        input++;
     }
 
-    return *len;
+    buffer[input] = '\0';
+    bring_line(lineptr, n, buffer, input);
+    retval = input;
+    if (i != 0)
+        input = 0;
+
+    return (retval);
 }
+/**
+ * custom_realloc - Reallocates a memory block.
+ * @ptr: Pointer to the memory previously allocated.
+ * @old_size: Size, in bytes, of the allocated space of ptr.
+ * @new_size: New size, in bytes, of the new memory block.
+ *
+ * Return: ptr.
+ * If new_size == old_size, returns ptr without changes.
+ * If malloc fails, returns NULL.
+ */
+void *custom_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
+{
+    void *newptr;
+
+    if (ptr == NULL)
+        return (malloc(new_size));
+
+    if (new_size == 0)
+    {
+        free(ptr);
+        return (NULL);
+    }
+
+    if (new_size == old_size)
+        return (ptr);
+
+    newptr = malloc(new_size);
+    if (newptr == NULL)
+        return (NULL);
+
+    if (new_size < old_size)
+        memcpy(newptr, ptr, new_size);
+    else
+        memcpy(newptr, ptr, old_size);
+
+    free(ptr);
+    return (newptr);
+}
+

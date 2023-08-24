@@ -15,7 +15,7 @@ void run_non_interactive_mode(char **argv)
 	while (1)
 	{
 		count++;
-		read = cu_getline(&line, &len, stdin);
+		read = custom_getline(&line, &len, stdin);
 		if (read == -1)
 			break;
 		line_copy = new_line_handler(line);

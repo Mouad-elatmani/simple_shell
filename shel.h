@@ -10,7 +10,8 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <dirent.h>
-
+#define BUFSIZE 1024
+void *custom_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 extern char **environ;
 
 /*nrrors*/
@@ -58,6 +59,6 @@ void run_non_interactive_mode(char **argv);
 void run_interactive_shell(char **arguments);
 
 
-int _custom_getline(char **line, size_t *len);
-char _custom_getchar(void);
+void bring_line(char **lineptr, size_t *n, char *buffer, size_t j);
+ssize_t custom_getline(char **lineptr, size_t *n, FILE *stream);
 #endif
