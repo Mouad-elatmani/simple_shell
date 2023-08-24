@@ -17,7 +17,7 @@ char *new_line_handler(char *line)
 		}
 		i++;
 	}
-	length = _strlen(line);
+	length = (int)_strlen(line);
 	if (length == 1 && line[0] == '\n')
 		return (line);
 	length = (int)_strlen(line);

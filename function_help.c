@@ -49,7 +49,7 @@ void print_exit_error(char *program_name, char *command_count_str,
 	write(2, ": ", 2);
 	write(2, "Illegal number", sizeof("Illegal number:") - 1);
 	write(2, ": ", 2);
-	token = _string_tokenize(NULL, TOK_DELIM);
-	write(2, token, _strlen(token));
+	token = strtok(NULL, TOK_DELIM);
+	write(2, token, (int)strlen(token));
 	write(2, "\n", 1);
 }

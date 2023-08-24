@@ -4,15 +4,16 @@
  *
  * Return: .
 */
-char **cu_environ;
+
+
 void print_environment(void)
 {
-	char **env_var = cu_environ;
+	char **env_var = environ;
 	int length;
 
 	while ((*env_var))
 	{
-		length = (int)_strlen(*env_var);
+		length = (int)strlen(*env_var);
 		write(1, *env_var, length);
 		write(1, "\n", 1);
 		env_var++;
@@ -25,14 +26,14 @@ void print_environment(void)
  */
 char *_get_envi_value(char *name)
 {
-	int var;
+	unsigned int var;
 	char **environment;
+
 
 	if (name == NULL || name[0] == '\0')
 		return (NULL);
-	var = (int)_strlen(name);
-
-	for (environment = cu_environ; (*environment) != NULL; environment++)
+	var = (unsigned int)_strlen(name);
+	for (environment = environ; *environment != NULL; environment++)
 	{
 		if (strncmp(*environment, name, var) == 0 && (*environment)[var] == '=')
 			return (*environment + var + 1);

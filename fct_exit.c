@@ -13,7 +13,7 @@ int cu_exit(char *line, int *status, int count, char *prog_name, char *message)
 	int exit_status = 0, valid = 1, i, len;
 	char *status_str, *line_copy;
 
-	line_copy = _strdup(line);
+	line_copy = strdup(line);
 	line_copy = _string_tokenize(line_copy, " ");
 	status_str = _string_tokenize(NULL, " ");
 	if (!status_str)
@@ -22,7 +22,7 @@ int cu_exit(char *line, int *status, int count, char *prog_name, char *message)
 		free(line_copy);
 		exit(*status);
 	}
-	len = _strlen(status_str);
+	len = (int)strlen(status_str);
 	if (status_str != NULL)
 	{
 		if (status_str[0] == '-')

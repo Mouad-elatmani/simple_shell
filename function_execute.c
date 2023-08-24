@@ -7,7 +7,7 @@
 char **generate_arguments(char *line)
 {
 	char **arguments, *arg_idx;
-	int i = 0;
+	unsigned int i = 0;
 
 	arguments = malloc(sizeof(char *) * (_strlen(line) + 1));
 	if (!arguments)

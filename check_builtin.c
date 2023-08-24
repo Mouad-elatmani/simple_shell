@@ -13,7 +13,7 @@ int check_builtin(char *program_name, char *input_line, int *process_status,
 {
 	int index, f = 1;
 	char *line_copy;
-	char *bu_com[] = {"exit", "env", "echo"};
+	char *bu_com[] = {"exit", "env"};
 
 	line_copy = strdup(input_line);
 	line_copy = _string_tokenize(line_copy, " ");

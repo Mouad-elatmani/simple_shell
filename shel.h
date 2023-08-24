@@ -11,9 +11,9 @@
 #include <sys/stat.h>
 #include <dirent.h>
 
-extern char **cu_environ;
+extern char **environ;
 
-/*Errors*/
+/*nrrors*/
 void command_error(char *program_name, char *command_count_str,
 		char *input_line);
 void _permission_error(char *program_name, char *command_count_str,
@@ -56,11 +56,4 @@ int check_builtin(char *program_name, char *input_line, int *process_status,
 /* modes*/
 void run_non_interactive_mode(char **argv);
 void run_interactive_shell(char **arguments);
-
-
-
-
-
-char *strtok_handler(char *str, const char *delim);
-int is_delim(char c, const char *delim);
 #endif

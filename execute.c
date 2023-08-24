@@ -1,4 +1,12 @@
 #include "shel.h"
+/**
+ * _execute_not_found - exec
+ *  @command_path: Argument vector
+ *  @cmd_argv: ..
+ *  @environment: ..
+ *  @status: ..
+ * Return: ..
+*/
 void _execute_not_found(char *command_path, char **cmd_argv,
 		char *environment[], int *status)
 {
