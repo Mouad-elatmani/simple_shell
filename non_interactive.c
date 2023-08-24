@@ -32,12 +32,12 @@ void run_non_interactive_mode(char **argv)
 			cmd_arguments = generate_arguments(line_copy);
 			i = execute_command(command, cmd_arguments, environment, &status);
 			if (i == 0)
-				print_cu_error(argv[0], count, status, line_copy);
+				print_cu_err(argv[0], count, status, line_copy);
 		}
 		else if (command == NULL)
 		{
 			_execute_not_found(line_copy, cmd_arguments, environment, &status);
-			print_cu_error(argv[0], count, status, line_copy);
+			print_cu_err(argv[0], count, status, line_copy);
 		}
 		free(command);
 	}
