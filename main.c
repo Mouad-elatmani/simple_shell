@@ -5,11 +5,47 @@
  * @argv: Argument vector
  * Return: Exit status
  */
-int main(__attribute__((unused)) int argc, char *argv[])
+
+int main(int argc, char **argv)
 {
-	if (isatty(STDIN_FILENO) == 0)
-		run_non_interactive_mode(argv);
+	char *line;
+	size_t len;
+
+	if (argc > 1)
+	{
+		fprintf(stderr, "Usage: %s\n", argv[0]);
+		return (1);
+	}
+
+	if (isatty(STDIN_FILENO))
+	{
+		line = NULL;
+		len = 0;
+
+		while (1)
+		{
+			printf("($) ");
+			if (getline(&line, &len, stdin) == -1)
+			{
+			break;
+			}
+
+			if (strcmp(line, "exit\n") == 0)
+			{
+			free(line);
+			exit(0);
+			}
+
+			system(line);
+		}
+
+		free(line);
+	}
 	else
-		run_interactive_shell(argv);
+	{
+		run_non_interactive_mode(argv);
+	}
+
 	return (0);
 }
+
