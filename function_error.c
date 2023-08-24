@@ -38,14 +38,14 @@ void _permission_error(char *program_name, char *command_count_str,
 	write(2, "\n", 1);
 }
 /**
- * print_cu_error - Function to print custom error messages.
+ * print_cu_err - Function to print custom error messages.
  * @program_name: The name of the program.
  * @command_count: Count of commands.
  * @status: Process status.
  * @input_line: The input line.
  * Return: None.
  */
-void print_cu_error(char *program_name, int command_count, int status,
+void print_cu_err(char *program_name, int command_count, int status,
 		char *input_line)
 {
 	char *command_count_str;
