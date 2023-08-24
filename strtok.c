@@ -8,5 +8,5 @@
  */
 char *_string_tokenize(char *str, const char *delimiters)
 {
-	return (strtok(str, delimiters));
+	return (strtok_handler(str, delimiters));
 }

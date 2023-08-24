@@ -30,7 +30,7 @@ int main(int argc, char **argv)
 			break;
 			}
 
-			if (strcmp(line, "exit\n") == 0)
+			if (_strcmp(line, "exit\n") == 0)
 			{
 			free(line);
 			exit(0);
