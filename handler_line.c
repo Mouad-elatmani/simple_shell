@@ -20,6 +20,7 @@ char *new_line_handler(char *line)
 	length = _strlen(line);
 	if (length == 1 && line[0] == '\n')
 		return (line);
+	length = (int)_strlen(line);
 	if (line[length - 1] == '\n')
 		line[length - 1] = '\0';
 	return (line);
